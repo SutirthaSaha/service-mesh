@@ -1,0 +1,2 @@
+istioctl uninstall --purge -y
+
