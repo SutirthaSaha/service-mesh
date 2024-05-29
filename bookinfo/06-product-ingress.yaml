@@ -5,14 +5,14 @@ metadata:
   namespace: bookinfo
   annotations:
     kubernetes.io/ingress.class: nginx
-    dns.gardener.cloud/class: garden
-    dns.gardener.cloud/dnsnames: 'product.ingress.test.try.shoot.canary.k8s-hana.ondemand.com'
-    dns.gardener.cloud/ttl: '600'
+    # dns.gardener.cloud/class: garden
+    # dns.gardener.cloud/dnsnames: 'product.ingress.test.try.shoot.canary.k8s-hana.ondemand.com'
+    # dns.gardener.cloud/ttl: '600'
     nginx.ingress.kubernetes.io/service-upstream: 'true'
     nginx.ingress.kubernetes.io/upstream-vhost: productpage.bookinfo.svc.cluster.local
 spec:
   rules:
-    - host: product.ingress.test.try.shoot.canary.k8s-hana.ondemand.com
+    - host: product.ingress.dev.try.shoot.canary.k8s-hana.ondemand.com
       http:
         paths:
           - pathType: ImplementationSpecific

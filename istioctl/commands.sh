@@ -1,1 +1,1 @@
-istioctl install -f demo-operator.yaml -y
+istioctl install -f minimal-operator.yaml -y
