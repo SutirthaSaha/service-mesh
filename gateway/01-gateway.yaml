@@ -1,19 +1,15 @@
-apiVersion: networking.istio.io/v1beta1  
-kind: Gateway  
-metadata:  
-  name: gateway  
-  namespace: istio-system 
-  annotations:  
-    dns.gardener.cloud/class: garden  
-    dns.gardener.cloud/dnsnames: '*.ingress.test.try.shoot.canary.k8s-hana.ondemand.com'  
-    dns.gardener.cloud/ttl: '600'  
-spec:  
-  selector:  
-    istio: ingressgateway
-  servers:  
-  - port:  
-      number: 80  
-      name: http-productpage  
-      protocol: HTTP  
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: gateway
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
     hosts:
-    - "product.ingress.test.try.shoot.canary.k8s-hana.ondemand.com"  
+    - "*.dev.try.shoot.canary.k8s-hana.ondemand.com"
