@@ -1,3 +1,4 @@
+# https://istio.io/latest/docs/reference/config/networking/gateway/
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
