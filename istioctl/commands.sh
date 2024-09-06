@@ -1,1 +1,2 @@
-istioctl install -f minimal-operator.yaml -y
+istioctl install -f default-operator.yaml -y
+kubectl apply -f ./gateway/01-gateway.yaml

@@ -8,6 +8,15 @@ spec:
     istio: ingressgateway # use istio default controller
   servers:
   - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    hosts:
+    - "*.dev.try.shoot.canary.k8s-hana.ondemand.com"
+    tls:
+      mode: SIMPLE
+      credentialName: wildcard-tls
+  - port:
       number: 80
       name: http
       protocol: HTTP

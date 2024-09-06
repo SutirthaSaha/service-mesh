@@ -2,9 +2,20 @@ apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator  
 metadata:  
   namespace: istio-system  
-  name: istio-minimal  
+  name: istio-default 
 spec:  
   profile: default  
   meshConfig:  
     defaultConfig:  
       holdApplicationUntilProxyStarts: true  
+  components:
+    ingressGateways:
+    - name: istio-ingressgateway
+      enabled: true
+      k8s:
+        serviceAnnotations:
+          cert.gardener.cloud/purpose: managed
+          cert.gardener.cloud/secretname: wildcard-tls
+          dns.gardener.cloud/class: garden
+          dns.gardener.cloud/dnsnames: "*.dev.try.shoot.canary.k8s-hana.ondemand.com"
+          dns.gardener.cloud/ttl: "120"
