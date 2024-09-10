@@ -41,6 +41,11 @@ spec:
         app: ratings
         version: v1
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsNonRoot: true
+        seccompProfile:
+          type: "RuntimeDefault"
       serviceAccountName: bookinfo-ratings
       containers:
       - name: ratings
@@ -48,3 +53,7 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: 
+            drop: ["ALL"]

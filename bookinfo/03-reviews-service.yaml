@@ -42,6 +42,11 @@ spec:
         version: v1
     spec:
       serviceAccountName: bookinfo-reviews
+      securityContext:
+        runAsUser: 1000
+        runAsNonRoot: true
+        seccompProfile:
+          type: "RuntimeDefault"
       containers:
       - name: reviews
         image: docker.io/istio/examples-bookinfo-reviews-v1:1.18.0
@@ -56,11 +61,16 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: 
+            drop: ["ALL"]
       volumes:
       - name: wlp-output
         emptyDir: {}
       - name: tmp
         emptyDir: {}
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -83,6 +93,11 @@ spec:
         version: v2
     spec:
       serviceAccountName: bookinfo-reviews
+      securityContext:
+        runAsUser: 1000
+        runAsNonRoot: true
+        seccompProfile:
+          type: "RuntimeDefault"
       containers:
       - name: reviews
         image: docker.io/istio/examples-bookinfo-reviews-v2:1.18.0
@@ -97,6 +112,10 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: 
+            drop: ["ALL"]
       volumes:
       - name: wlp-output
         emptyDir: {}
@@ -124,6 +143,11 @@ spec:
         version: v3
     spec:
       serviceAccountName: bookinfo-reviews
+      securityContext:
+        runAsUser: 1000
+        runAsNonRoot: true
+        seccompProfile:
+          type: "RuntimeDefault"
       containers:
       - name: reviews
         image: docker.io/istio/examples-bookinfo-reviews-v3:1.18.0
@@ -138,6 +162,10 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: 
+            drop: ["ALL"]
       volumes:
       - name: wlp-output
         emptyDir: {}

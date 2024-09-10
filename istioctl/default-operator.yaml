@@ -6,6 +6,9 @@ metadata:
 spec:  
   profile: default
   components:
+    cni:  
+      enabled: true  
+      namespace: kube-system 
     ingressGateways:
     - name: istio-ingressgateway
       enabled: true
@@ -16,7 +19,14 @@ spec:
           dns.gardener.cloud/class: garden
           dns.gardener.cloud/dnsnames: "*.dev.try.shoot.canary.k8s-hana.ondemand.com"
           dns.gardener.cloud/ttl: "120"
-  values:  
+  values:
+    cni:  
+      excludeNamespaces:  
+        - istio-system  
+        - kube-system
+    global:  
+      proxy:  
+        privileged: false
     pilot:  
       env:  
         # Enable native sidecar support in Istio  

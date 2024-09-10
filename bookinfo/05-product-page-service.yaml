@@ -63,6 +63,11 @@ spec:
         version: v1
     spec:
       serviceAccountName: bookinfo-productpage
+      securityContext:
+        runAsUser: 1000
+        runAsNonRoot: true
+        seccompProfile:
+          type: "RuntimeDefault"
       containers:
       - name: productpage
         image: docker.io/istio/examples-bookinfo-productpage-v1:1.18.0
@@ -72,6 +77,10 @@ spec:
         volumeMounts:
         - name: tmp
           mountPath: /tmp
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: 
+            drop: ["ALL"]
       volumes:
       - name: tmp
         emptyDir: {}
