@@ -4,10 +4,7 @@ metadata:
   namespace: istio-system  
   name: istio-default 
 spec:  
-  profile: default  
-  meshConfig:  
-    defaultConfig:  
-      holdApplicationUntilProxyStarts: true  
+  profile: default
   components:
     ingressGateways:
     - name: istio-ingressgateway
@@ -19,3 +16,8 @@ spec:
           dns.gardener.cloud/class: garden
           dns.gardener.cloud/dnsnames: "*.dev.try.shoot.canary.k8s-hana.ondemand.com"
           dns.gardener.cloud/ttl: "120"
+  values:  
+    pilot:  
+      env:  
+        # Enable native sidecar support in Istio  
+        ENABLE_NATIVE_SIDECARS: true
